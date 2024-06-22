@@ -4,6 +4,7 @@ import Paper from "@mui/material/Paper"
 
 function Card(props) {
   const { id, text } = props.list;
+  console.log(Object(props.list))
   return (
     <Paper
       sx={{ padding: "20px", display: "flex", alignItems: "center", marginBottom:"10px", fontFamily:'Test' }}
@@ -24,3 +25,4 @@ function Card(props) {
 }
 
 export default Card
+

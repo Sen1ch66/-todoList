@@ -6,12 +6,6 @@ import { useState, useRef } from "react"
 function App(value) {
   let [list, setList] = useState([])
   const inputContainer = useRef(null)
-  try{
-    value = inputContainer.current.querySelector('input')?.value;
-  }
-  catch(e){
-    console.log(e)
-  }
   function newTask() {
     const newList = [...list]
     newList.push({
@@ -19,7 +13,6 @@ function App(value) {
       text: value,
     })
     setList(newList)
-    console.log(newList)
   }
   return (
     <section className="App">
