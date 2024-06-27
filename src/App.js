@@ -30,7 +30,7 @@ function App() {
           ref={input}
           sx={{ margin: "20px" }}
           id="outlined-basic"
-          label="Ім'я справи"
+          label="Им'я справи"
           variant="outlined"
         />
         <Button onClick={newTodo} variant="contained">
