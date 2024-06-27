@@ -7,14 +7,9 @@ function TODO(props) {
   console.log(checkbks)
   const { id, text } = props.todo
   function deleteToDo(e){
-    const checkbksValue = checkbks.current.queryselector('input')?.checked
     const oldlist = [...props.list]
-    if (checkbksValue){
-      const newlist = oldlist.filter(el => el.id != e.target.id)
-      props.setList(newlist)
-    } else {
-      alert('поставте галочку')
-    }
+    const newlist = oldlist.filter(el => el.id != e.target.id)
+    props.setList(newlist)
   }
   return (
     <Paper
