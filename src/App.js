@@ -1,21 +1,21 @@
 import "./styles/App.css"
 import { Button, TextField } from "@mui/material"
 import Paper from "@mui/material/Paper"
-import Card from "./Components/card.js"
+import TODO from "./Components/card.js"
 import { useState, useRef } from "react"
-function App(value) {
+function App() {
   let [list, setList] = useState([])
-  const inputContainer = useRef(null)
-  function newTask() {
+  const input = useRef(null)
+
+  function newTodo() {
     const newList = [...list]
-    newList.push({
-      id: list.length + 1,
-      text: value,
-    })
+    const value = input.current.querySelector('input')?.value;
+    value !== '' ? newList.unshift({id: list.length +1, text: value,}) : alert('Введіть дані');
     setList(newList)
+    input.current.querySelector('input').value = '';
   }
   return (
-    <section className="App">
+    <div className="App">
       <h1>ToDo List</h1>
       <Paper
         sx={{
@@ -23,15 +23,24 @@ function App(value) {
           display: "flex",
           alignItems: "center",
           marginBottom: "20px",
-          boxShadow: '2px 2px 10px green'
         }}
         elevation={8}
       >
-        <TextField id="filled-basic" label="Нова справа" variant="filled" ref={inputContainer}/>
-        <Button variant="outlined" onClick={newTask}>Додати</Button>
+        <TextField
+          ref={input}
+          sx={{ margin: "20px" }}
+          id="outlined-basic"
+          label="Ім'я справи"
+          variant="outlined"
+        />
+        <Button onClick={newTodo} variant="contained">
+          Нова справа
+        </Button>
       </Paper>
-      {list.map(el => {return <Card list={el} />})}
-    </section>
+      {list.map((el) => {
+        return <TODO key={el.id} todo={el} list = {list} setList = {setList}/>
+      })}
+    </div>
   )
 }
 
