@@ -1,28 +1,30 @@
-
-import { Button, TextField, Checkbox } from "@mui/material"
+import { Button, TextField} from "@mui/material"
 import Paper from "@mui/material/Paper"
 
-function Card(props) {
-  const { id, text } = props.list;
-  console.log(Object(props.list))
+function TODO(props) {
+  const oldlist = [...props.list]
+  const { id, text } = props.todo
+  function deleteToDo(e) {
+    const newlist = oldlist.filter(el => el.id != e.target.id)
+    props.setList(newlist)
+  }
   return (
     <Paper
-      sx={{ padding: "20px", display: "flex", alignItems: "center", marginBottom:"10px", fontFamily:'Test' }}
+      sx={{ padding: "20px", display: "flex", alignItems: "center", marginBottom: "10px", fontFamily: 'Test' }}
       elevation={12}
       id={id}
     >
-      <Checkbox />
       <TextField
         sx={{ margin: "20px" }}
         id="outlined-basic"
-        label="Им'я справи"
+        label="Ім'я справи"
         variant="outlined"
         value={text}
       />
-      <Button variant="contained">Видалити</Button>
+      <Button color='error' variant="contained" id={id} onClick={deleteToDo}>Видалити</Button>
     </Paper>
   )
 }
 
-export default Card
+export default TODO
 
